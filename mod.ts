@@ -19,7 +19,7 @@ export function parse(expr: string): string[] {
     if (char === undefined) {
       throw new Error("out of inde");
     }
-    if (char === ")") {
+    if (!state.isInQuote && char === ")") {
       break;
     }
     if (/["']/.test(char)) {
