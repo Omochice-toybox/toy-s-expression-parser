@@ -21,5 +21,11 @@ Deno.test("parse()", async (t) => {
     await t.step("should parse if include cr", () => {
       assertEquals(parse("('a' \n 'b')"), ["a", "b"]);
     });
+    await t.step("should parse if include start brace", () => {
+      assertEquals(parse("('a(' 'b')"), ["a(", "b"]);
+    });
+    await t.step("should parse if include end brace", () => {
+      assertEquals(parse("('a)' 'b')"), ["a)", "b"]);
+    });
   });
 });
